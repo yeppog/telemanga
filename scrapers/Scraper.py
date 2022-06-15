@@ -14,13 +14,12 @@ class Scraper:
         try:
             driver.get(url)
             time.sleep(2)
-            rtr = []
+            rtr = {}
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             for item in soup.find_all(htmlTag):
-                print(item)
                 a = item[attr]
                 if condition in a:
-                    rtr.append(a)
+                    rtr[item.text.split("/")[0]] = a
             return rtr
         except Exception as e:
             print(e)

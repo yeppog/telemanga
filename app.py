@@ -3,6 +3,8 @@ from typing import List
 from scrapers.MangaFoxScraper import MangaFoxScraper
 from scrapers import Scraper
 from service.SeleniumService import SeleniumService
+from tele.Telegram import Telegram
+
 import logging
 
 
@@ -18,6 +20,7 @@ class App:
         self.sel = SeleniumService()
         self.logger = logging.getLogger()
         self.scraper = Scraper.Scraper()
+        self.telegram = Telegram("", self.sel)
 
     """
     Currently only works with MangaFox
@@ -38,4 +41,5 @@ class App:
     def run(self) -> None:
         # define telebot run instance here i guess?
         self.logger.info("Starting app...")
+        self.telegram.run()
         return None

@@ -71,10 +71,13 @@ blackListUrl = [
 class MangaFoxScraper(Scraper):
 
     @classmethod
-    def getMangaPages(self, driver, url: str) -> List[str]:
+    def getMangaPages(self, driver, url: str, fullPath=None) -> List[str]:
+        fUrl = url
+        if fullPath is not None:
+            fUrl = fullPath
         return super().scrape(
             driver,
-            url,
+            fUrl,
             pageConfigs["filter"],
             pageConfigs["htmlTag"],
             pageConfigs["htmlAttr"],
