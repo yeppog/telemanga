@@ -29,6 +29,12 @@ class App:
             print(i)
         return results
 
+    def searchManga(self, url: str, query: str) -> List[str]:
+        results = MangaFoxScraper.getMangaTitles(self.sel.getDriver(), url, query)
+        for i in results:
+            print(i)
+        return results
+
     def run(self) -> None:
         # define telebot run instance here i guess?
         self.logger.info("Starting app...")
