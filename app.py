@@ -4,6 +4,8 @@ from scrapers.MangaFoxScraper import MangaFoxScraper
 from scrapers import Scraper
 from service.SeleniumService import SeleniumService
 from tele.Telegram import Telegram
+from dotenv import load_dotenv
+import os
 
 import logging
 
@@ -17,10 +19,11 @@ class App:
                 logging.StreamHandler(sys.stdout)
                 ]
             )
+        load_dotenv()
         self.sel = SeleniumService()
         self.logger = logging.getLogger()
         self.scraper = Scraper.Scraper()
-        self.telegram = Telegram("", self.sel)
+        self.telegram = Telegram(os.environ['KEY'], self.sel)
 
     """
     Currently only works with MangaFox
