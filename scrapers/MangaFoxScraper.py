@@ -1,6 +1,6 @@
 import re
 from scrapers.Scraper import Scraper
-from typing import List
+from typing import List, Tuple
 
 
 pageConfigs = {
@@ -15,6 +15,8 @@ searchConfigs = {
     "htmlAttr": "href",
     "regex":"^(?!.*chapter).*http:\/\/[a-z1-9\/\?\.\&\-=]*"
 }
+
+domain = "http://mangafox.win/"
 
 blackListUrl = [
         "http://mangafox.win",
@@ -96,3 +98,12 @@ class MangaFoxScraper(Scraper):
             blackListUrl,
             re.compile(searchConfigs["regex"] + f"(?:{query})*")
             )
+
+    @classmethod
+    def parseNames(self, url):
+        postfix = url[len(domain):]
+        postfix = postfix.replace("-", "_")
+        hashIndex = postfix.find("#")
+        if hashIndex > 0:
+            postfix = postfix[:hashIndex]
+        return postfix
