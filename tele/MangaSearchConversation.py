@@ -109,7 +109,7 @@ class MangaSearchConversation:
             os.remove(fileUrl)
 
         except Exception as e:
-            if "413" in e:
+            if "413" in str(e):
                 await context.bot.send_message(update.message.chat_id, "Issue sending manga. Perhaps the file is too large.")
             print(e)
         return ConversationHandler.END
