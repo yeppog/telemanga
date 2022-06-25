@@ -14,7 +14,7 @@ class App:
     def __init__(self):
         logging.basicConfig(
             level=logging.INFO,
-            format="%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s",
+            format="%(asctime)s [%(threadName)-12.12s] [%(name)-s] [%(levelname)-5.5s]  %(message)s",
             handlers=[
                 logging.StreamHandler(sys.stdout)
                 ]

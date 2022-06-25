@@ -1,6 +1,7 @@
 selenium
 aiohttp
 asyncio
-python-telegram-bot
-dotenv
+python-telegram-bot --pre
+python-dotenv
 pillow
+bs4
