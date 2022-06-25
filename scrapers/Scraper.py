@@ -20,6 +20,7 @@ async def asyncScrape(urls, htmlTag, attr, condition):
             if condition in a:
                 rtr[int(item.text.split("/")[0])] = a
         output.append(rtr)
+        driver.close()
 
     tasks = [process(output, url, htmlTag, attr, condition) for url in urls]
     await asyncio.gather(*tasks)
