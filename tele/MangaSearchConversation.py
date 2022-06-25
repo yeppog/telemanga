@@ -128,7 +128,7 @@ class MangaSearchConversation:
                 SOURCE: [MessageHandler(
                     filters.Regex("^(MangaFox)$"), self.search)],
                 SEARCH: [MessageHandler(
-                    filters.Regex("^([a-zA-Z0-9]*)$"), self.selectTitle)],
+                    filters.Regex("^([a-zA -Z0-9]*)$"), self.selectTitle)],
                 CHAPTER: [MessageHandler(
                     filters.Regex("^([0-9]*)$"), self.selectChapters)],
                 COUNT: [MessageHandler(
