@@ -23,7 +23,7 @@ class App:
         self.sel = SeleniumService()
         self.logger = logging.getLogger()
         self.scraper = Scraper.Scraper()
-        self.telegram = Telegram(os.environ['KEY'], self.sel)
+        self.telegram = Telegram(os.environ.get("KEY"), self.sel)
 
     """
     Currently only works with MangaFox

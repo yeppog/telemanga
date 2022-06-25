@@ -134,7 +134,7 @@ class MangaSearchConversation:
                 COUNT: [MessageHandler(
                     filters.Regex("^([0-9]*)$"), self.getCount)],
                 FETCH: [MessageHandler(
-                    filters.Regex("^([a-z]*)$"), self.fetch)],
+                    filters.Regex("^([0-9]*)$"), self.fetch)],
             },
             fallbacks=[CommandHandler("cancel", self.cancel)]
         )
