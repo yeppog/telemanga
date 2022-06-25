@@ -26,6 +26,23 @@ async def asyncScrape(urls, htmlTag, attr, condition):
     await asyncio.gather(*tasks)
     return output
 
+def scrape(urls, htmlTag, attr, condition):
+    output = []
+    for url in urls:
+        driver = SeleniumService().getDriver()
+        driver.get(url)
+        rtr = {}
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        for item in soup.find_all(htmlTag):
+            a = item[attr]
+            if condition in a:
+                rtr[int(item.text.split("/")[0])] = a
+        output.append(rtr)
+        driver.close()
+
+    return output
+
+
 logger = logging.getLogger("Scraper")
 
 class Scraper:
@@ -36,7 +53,7 @@ class Scraper:
             condition: str, htmlTag: str,
             attr: str) -> List[str]:
         startTime = time.time()
-        final = await asyncScrape(url, htmlTag, attr, condition)
+        final = scrape(url, htmlTag, attr, condition)
         rtr = []
         for j in final:
             for i in range(1, len(j) + 1):
